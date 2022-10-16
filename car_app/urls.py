@@ -19,7 +19,7 @@ urlpatterns = [
     path("confirm_book/<car_id>/", views.confirm_book),
     path("provider_dashboard/", views.provider_dashboard),
     path("add_car/", views.add_car),
-    path("insert_car/", views.insert_car),
+    path("insert_car", views.insert_car),
     path("edit_car/<car_id>/", views.edit_car),
     path("edit_my_car/<car_id>/", views.edit_my_car),
     path("provider_account/<provider_id>/", views.provider_account),

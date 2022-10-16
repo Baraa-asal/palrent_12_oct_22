@@ -93,7 +93,6 @@ def login(request):
     return redirect("/")
 
 
-
 def register(request):
     return render(request, "register.html")
 
@@ -108,17 +107,29 @@ def customer_register(request):
 
     password = request.POST["password"]
     pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-
-    customer = Customer.objects.create(
-        profile=request.FILES["profile"],
-        first_name=request.POST["firstName"],
-        last_name=request.POST["lastName"],
-        email=request.POST["email"],
-        password=pw_hash,
-        mobile=request.POST["mobile"],
-        birthday=request.POST["birthday"],
-        driving_license=request.FILES["driving_license"],
-    )
+    try:
+        profile = request.FILES["profile"]
+    except:
+        customer = Customer.objects.create(
+            first_name=request.POST["firstName"],
+            last_name=request.POST["lastName"],
+            email=request.POST["email"],
+            password=pw_hash,
+            mobile=request.POST["mobile"],
+            birthday=request.POST["birthday"],
+            driving_license=request.FILES["driving_license"],
+        )
+    else:
+        customer = Customer.objects.create(
+            profile=profile,
+            first_name=request.POST["firstName"],
+            last_name=request.POST["lastName"],
+            email=request.POST["email"],
+            password=pw_hash,
+            mobile=request.POST["mobile"],
+            birthday=request.POST["birthday"],
+            driving_license=request.FILES["driving_license"],
+        )
     request.session["customer_id"] = customer.id
     request.session["customer_first_name"] = customer.first_name
     request.session["sign_out"] = "Sign Out"
@@ -213,6 +224,7 @@ def check_email(request, email=""):
     if customer:
         return JsonResponse({"exists": True})
     return JsonResponse({"exists": False})
+
 
 def check_email_provider(request, email=""):
     provider = Provider.objects.filter(email=email)

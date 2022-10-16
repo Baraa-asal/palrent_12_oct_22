@@ -6,7 +6,8 @@
 
             </div>
         </div>
-        <div class="container-fluid">
+        <h2 class="text-center">Your Search Results</h2>
+        <div class="container-fluid mt-3">
             <div class="row col-11 justify-content-center">
                 <!-- FIXME: Side Bar -->
                 <div class="card filter_side_bar col-lg-3 border border-1 pt-3 mr-3">
@@ -69,19 +70,7 @@
                 </div>
 
                 <div class="search_result col-lg-8 border rounded">
-                    <div class="sorting col-12 justify-content-evenly">
-                        <!-- TODO: jinja for period number -->
-                        <p>You are searching for 10 days period</p>
-                        <div class="sm-10">
-                            <select name="sorting" class="btn btn-primary dropdown-toggle btn-sm " id="" >
-                                <option value="cheapest">cheapest</option>
-                                <option value="best_rating">best rating</option>
-                            </select>
-                        </div>
-
-                        <!-- TODO: jenja for cars numbers -->
-                        <p>you have 20 cars to select</p>
-                    </div>
+                    
                     <div>
                         {% for provider in searched_cars %}
                         {% for car in provider.cars.all%}
@@ -91,7 +80,7 @@
                                 {% csrf_token %}
                                 <div class="row justify-content-center">
                                     <div class="col-lg-3">
-                                        <img src="{{car.photo.url}}" alt="photo_test" class="img-fluid rounded-2">
+                                        <img src="{{car.car_photo}}" alt="photo_test" class="img-fluid rounded-2">
                                     </div>
                                     <div class="col-lg-4">
                                         <h6>Brand: {{car.brand}}</h6>
@@ -104,7 +93,7 @@
                                         <h6>Price: {{car.price}} $</h6>
                                     </div>
                                     <div class="col">
-                                        <button class="btn btn-secondary rounded-pill mt-4 btn-sm text-black" type="submit">Select Car</button>
+                                        <button class="btn btn-secondary mt-4 btn-sm text-black" type="submit">Select Car</button>
                                     </div>
 
                                 </div>

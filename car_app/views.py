@@ -138,7 +138,7 @@ def insert_car(request):
         car_photo=request.POST["car_photo"],
         provider=Provider.objects.get(id=request.session["provider_id"]),
     )
-    return redirect("my_dashboard/provider_dashboard/")
+    return redirect("/my_dashboard/provider_dashboard/")
 
 
 def edit_car(request, car_id):
@@ -245,7 +245,7 @@ def customer_account_edit(request, customer_id):
             ).decode()
 
     c = Customer.objects.get(id=customer_id)
-    c.profile = request.POST["profile"]
+    c.profile = request.FILES["profile"]
     c.first_name = request.POST["first_name"]
     c.last_name = request.POST["last_name"]
     c.email = request.POST["email"]

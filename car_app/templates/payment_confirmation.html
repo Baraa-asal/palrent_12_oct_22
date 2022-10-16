@@ -1,18 +1,10 @@
 {% extends 'base.html' %}
 {% block content%}
-<a href="/delete/">
-    <button class="btn btn-primary">Log Out</button>
-</a>
+<div class="container selected-car">
+    <h3 class="text-center"> Booking for <span class="text-primary">{{car_to_book.brand}} </span><span class="text-success">[ 10 days ]</span></h3>
 
-<div class="container py-5">
     <div class="pt-2">
         <div class="d-flex pb-2">
-            <div>
-                <p>
-                    <b> Booking for <span class="text-primary">{{car_to_book.brand}} </span><span
-                        class="text-success">10 days</span></b>
-                </p>
-            </div>
             <div class="ms-auto">
                 <p class="text-primary">
                     <i class="fas fa-plus-circle text-primary pe-1"></i>
@@ -20,21 +12,21 @@
                 </p>
             </div>
         </div>
-        <div class="shadow-lg p-3 mb-5 bg-white rounded font-weight-bold text-center">
-            <p>
-                Please inform that the due charges will be on hold till car provider make the final payment_confirmation.
+        <div class="shadow-lg p-3 mb-5 rounded font-weight-bold text-center search_result_alert">
+            <p style="color: white;">
+                Please inform that the due charges will be on hold till car provider confirms your request.
             </p>
-            <p>
-                In case rejection of booking, the paid amount will be back in your balance.
+            <p style="color: white;">
+                In case rejection of booking, the paid amount will be refunded in your balance.
             </p>
-            <p>
-                Please keep an eye on your email inbox; You will receive and eamil wheather for confirmation or rejection.
+            <p style="color: white;">
+                Please keep an eye on your email inbox; You will receive and email whether for confirmation or rejection.
             </p>
         </div>
         <div class="row my-100">
-            <div class="col-lg-5">
+            <div class="col-lg-6">
                 <div class="col col-lg-10">
-                    <div class="rounded d-flex flex-column shadow p-3 mb-5 bg-white rounded" style="background-color: #f8f9fa;">
+                    <div class="rounded d-flex flex-column shadow p-3 mb-5 search_result rounded">
                         <div class="p-2 me-3">
                             <h4 class="font-weight-bold">Booking Receipt</h4>
                         </div>
@@ -71,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5 shadow p-3 mb-5 bg-white rounded">
+            <div class="col-lg-5 shadow p-3 mb-5 search_result rounded">
                 <form action="/my_dashboard/confirm_book/{{car_to_book.id}}/" method="post" class="pb-3">
                     {% csrf_token %}
                     {% if customer_cards.count > 0 %}
@@ -97,10 +89,10 @@
                     {% else %}
                     <div class="font-weight-bold" style="color:green">
                         <p>You didn't add any cards yet, please add card to proceed!</p>
-                        <button class="btn btn-secondary mx-2" type="submit"><a style="color: white;"
+                        <button class="btn btn-success mx-2" type="submit"><a style="color: white;"
                                 href="/my_dashboard/customer_payment_method/{{customer_id}}/">Add payment method
                             </a></button>
-                        <button class="btn btn-secondary mx-2 my-2" type="submit"><a style="color: white;"
+                        <button class="btn btn-danger mx-2 my-2" type="submit"><a style="color: white;"
                                 href="/my_dashboard/">Cancel</a></button><br>
                     </div>
                     {% endif %}

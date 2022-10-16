@@ -122,6 +122,11 @@
                     <a href="/my_dashboard/provider_dashboard/"><u>My garage</u></a>
                   </li>
                 {% endif %}
+                {% if "customer_id" in request.session %}
+                <li class="active"><a href="/my_dashboard/" class="nav-link">Home</a></li>
+                <li><a href="/my_dashboard/customer_account/{{request.session.customer_id}}/" class="nav-link">My
+                  account</a></li>
+                {% endif %}
                 <button class="btn btn-dark btn-sm"><span><a href="/delete/"
                   style="color: white;">Sign Out</a></span></button>
                 {% endif %}
